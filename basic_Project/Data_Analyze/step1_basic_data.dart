@@ -19,8 +19,24 @@ void main() {
 
   // 1-C: for-in 반복문으로 데이터 순회하기
   // TODO: 첫 번째 리스트를 for-in 반복문으로 순회하며 각 요소 출력하기
+  for (var sell in monthSellCount) {
+    print(sell);
+  }
+
+  print(' ---------- ');
   // TODO: 두 번째 리스트를 for-in 반복문으로 순회하며 각 요소에 10을 더한 값 출력하기
+  for (var visiter in monthVisiter) {
+    print('${visiter + 10}');
+  }
+  print(' ---------- ');
+
   // TODO: 세 번째 리스트를 for-in 반복문으로 순회하며 평점이 4.0 이상인 요소만 출력하기
+  for (var score in productAverageScore) {
+    if (score >= 4.0) {
+      print(score);
+    }
+  }
+  print(' ---------- ');
 
   // 힌트: 리스트 선언 방법 - List<타입> 이름 = [값1, 값2, ...];
   // 힌트: 리스트 요소 접근 방법 - 리스트이름[인덱스]
