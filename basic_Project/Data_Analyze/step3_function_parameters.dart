@@ -7,8 +7,9 @@ void main() {
   List<num> list2 = [10, 20, 30, 40, 50];
   List<num> list3 = [1.2, 3, 5.1, 10, 7.5];
 
-  print(addAnotherNum(1));
-  print(addAnotherNum(15));
+  print(addAnotherNum(list1));
+  print(addAnotherNum(list1, 1));
+  print(addAnotherNum(list2));
 }
 
 // 3-C: 네임드 파라미터로 함수 만들기
@@ -37,6 +38,14 @@ num add(num a, num b) {
 
 // 3-B: 옵셔널 파라미터 추가하기
 // TODO: 리스트와 가중치(옵셔널)를 받아 가중 합계를 계산하는 함수 만들기
+num addAnotherNum(List<num> numbers, [num b = 10]) {
+  num total = 0;
+  for (var number in numbers) {
+    total += number;
+  }
+  total += b;
+  return total;
+}
+
 // 함수 시그니처: double weightedSum(List<int> numbers, [double weight = 1.0])
 // TODO: 함수를 다양한 방식으로 호출하고 결과 출력하기 (가중치 있/없음)
-num addAnotherNum(num a, [num b = 10]) => a + b;
