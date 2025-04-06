@@ -7,7 +7,9 @@ void main() {
   List<int> list2 = [10, 20, 30, 40, 50];
   List<int> list3 = [100, 200, 300, 400, 500];
   int result1 = addTwoNumberInList(list1, list2);
+  // TODO: 함수 호출하여 결과 확인하기
   print('result1 : $result1');
+  print('Num Square: ${squareNum(3)}');
 }
 
 // 4-A: 간단한 화살표 함수 만들기
@@ -28,13 +30,13 @@ int addTwoNumberInList(List<int> num1, List<int> num2) {
   }
   return total;
 }
-  // TODO: 함수 호출하여 결과 확인하기
 
-  // 4-B: 화살표 함수를 변수에 저장하기
-  // TODO: 숫자를 제곱하는 화살표 함수를 변수에 저장하기
-  // 예: var square = (int n) => n * n;
-  // TODO: 저장된 함수 호출하여 결과 확인하기
-
+// 노트 : 함수 자체를 바로 선언후 변수에 저장하는 법 기억하기!
+// 4-B: 화살표 함수를 변수에 저장하기
+// TODO: 숫자를 제곱하는 화살표 함수를 변수에 저장하기
+// 예: var square = (int n) => n * n;
+// TODO: 저장된 함수 호출하여 결과 확인하기
+var squareNum = (int n) => n * n;
   // 4-C: 데이터 필터링 함수 만들기
   // TODO: 리스트에서 짝수만 필터링하는 함수 만들기 (화살표 함수 활용)
   // TODO: 리스트에서 특정 값보다 큰 요소만 필터링하는 함수 만들기
