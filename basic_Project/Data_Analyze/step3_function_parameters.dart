@@ -26,6 +26,7 @@ void main() {
   // 힌트: 옵셔널 파라미터는 대괄호 []로 감싸고 기본값을 지정할 수 있어요
   // 힌트: 네임드 파라미터는 중괄호 {}로 감싸고 required 키워드로 필수 여부 지정할 수 있어요
   // 힌트: 네임드 파라미터 호출 예 - analyze(data: myList, operation: "sum")
+  // ** 노트 : 이넘 매개변수로 사용 방법 기억하기
   double result3 = analyze(data: list3, option: selectFunction.max);
   print("result3 : $result3");
 }
@@ -44,6 +45,7 @@ num optionAdd(num a, [num b = 10]) => a + b;
 // TODO: 리스트를 받아 조건에 따라 분석하는 함수 만들기
 // 함수 시그니처: double analyze({required List<int> data, required String operation, bool printResult = true})
 // 힌트: operation 값에 따라 "sum", "average", "max", "min" 중 하나의 연산 수행
+// **노트 : 이넘 사용법 익히기!
 enum selectFunction { sum, average, max, min }
 
 double analyze({
