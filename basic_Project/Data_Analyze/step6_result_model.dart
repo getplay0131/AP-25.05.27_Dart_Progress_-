@@ -11,25 +11,26 @@ class AnalysisResult {
   // 6-B: 멤버 변수와 생성자 구현하기
   // TODO: 데이터셋 이름 (String)
   // 데이터셋의 이름을 저장하는 변수입니다.
-  late final String dataSet;
+  final String dataSet;
 
   // TODO: 분석 함수 이름 (String)
   // 어떤 분석 함수가 사용되었는지 저장하는 변수입니다.
-  late String functions;
+  String functions;
 
   // TODO: 분석 결과 값 (num)
   // 분석 결과 값을 저장하는 변수입니다. 숫자 값이므로 num 타입을 사용합니다.
-  late final num resultValue;
+  final num resultValue;
 
   // TODO: 분석 시간 (DateTime)
   // 분석이 수행된 시간을 저장하는 변수입니다. DateTime 타입을 사용합니다.
-  late final DateTime times;
+  final DateTime times;
 
   // TODO: 생성자 구현하기 (네임드 파라미터 활용)
   // 생성자는 클래스의 인스턴스를 생성할 때 호출되는 특별한 메서드입니다.
   // 네임드 파라미터를 사용하여 멤버 변수를 초기화합니다.
   // 힌트: AnalysisResult({required this.dataSet, required this.functions, required this.resultValue, required this.times})
   // 네임드 파라미터를 사용하면 인스턴스를 생성할 때 각 변수의 이름을 명시적으로 지정할 수 있습니다.
+  // ** 노트 : 자바에서 할때를 생각해보자, 자바는 IDE 도움으로 자동 생성했지만, 사용할 데이터를 받고, 안에서 전체적으로 초기화 하지만, 다트는 사용할 필드를 필수로 받아서 초기화 해야한다.
   AnalysisResult({
     required this.dataSet,
     required this.functions,
@@ -47,6 +48,12 @@ class AnalysisResult {
     return "dataset : $dataSet , functions : $functions , resultValue : $resultValue , times : $times ";
   }
 
+  // @override
+  // String toString() {
+  //   // TODO: implement toString
+  //   return super.toString();
+  // }
+
   // TODO: 결과 출력 메서드 구현
   // 이 메서드는 결과 정보를 콘솔에 출력합니다.
   // 예: print("Dataset: myData, Function: sum, Result: 100, Time: 2025-04-10 12:00:00");
@@ -63,6 +70,7 @@ class AnalysisResult {
 
 void main() {
   // ** 노트 : 역시 자바의 생성자 문법과는 다르다. 이래서 익혀야 하는거다. 이래서 손으로 구성해보아야 한다.
+  // ** 노트 : 생성한 타입을 담아야하기에 해당 타인으로 변수를 만들어서 값으로 생성자를 이용해서 객체를 만든다.
   // TODO: AnalysisResult 클래스 인스턴스 생성하기
   // AnalysisResult 클래스의 인스턴스를 생성하여 데이터를 저장합니다.
   // 예: AnalysisResult result = AnalysisResult(
