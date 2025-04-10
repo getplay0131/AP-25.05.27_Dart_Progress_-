@@ -22,12 +22,16 @@ void main() {
 
   // 3-D: 파라미터 기본값 설정하기
   // TODO: 네임드 파라미터와 기본값을 활용한 함수 호출 테스트
-
+  // ** 노트 : 옵셔널은 대괄호, 네임드는 중괄호!또한 네임드에서 reauired로 필수 매개변수를 지정할 수 있다.
   // 힌트: 옵셔널 파라미터는 대괄호 []로 감싸고 기본값을 지정할 수 있어요
   // 힌트: 네임드 파라미터는 중괄호 {}로 감싸고 required 키워드로 필수 여부 지정할 수 있어요
   // 힌트: 네임드 파라미터 호출 예 - analyze(data: myList, operation: "sum")
   // ** 노트 : 이넘 매개변수로 사용 방법 기억하기
-  double result3 = analyze(data: list3, option: selectFunction.max);
+  double result3 = analyze(
+    data: list3,
+    option: selectFunction.max,
+    printOption: false,
+  );
   print("result3 : $result3");
 }
 

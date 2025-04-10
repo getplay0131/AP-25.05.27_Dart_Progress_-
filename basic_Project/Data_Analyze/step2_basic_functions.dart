@@ -29,7 +29,7 @@ num sum(List<num> numList) {
   if (numList.isEmpty) {
     return 0;
   }
-  // list.reduce : 값들을 하나씩 가져와 누적 => for-in반복문과 역할 비슷슷
+  // ** 노트 : list.reduce : 값들을 하나씩 가져와 누적 => for-in반복문과 역할 비슷
   total = numList.reduce((a, b) => a + b);
   // print('total : $total');
   return total;

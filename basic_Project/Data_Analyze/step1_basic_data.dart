@@ -9,6 +9,7 @@ void main() {
   // TODO: 제품 평점 데이터를 담는 소수점 리스트 만들기
   List<double> productAverageScore = [1.2, 3.0, 4.5, 5.0, 2.8];
 
+  // ** 노트 :  프린트 내에서 달러 기호로 출력시 작업이 필요하거나, 함수에 인자를 전달해야하는 작업을 할때는 중괄호로 묶어줘야 한다.
   // 1-B: 리스트 요소 접근하고 출력하기
   // TODO: 첫 번째 리스트의 첫 번째, 세 번째 요소 출력하기
   print('첫번째 요소 : ${monthSellCount[0]} , 두번째 요소 : ${monthSellCount[2]}');
@@ -23,6 +24,7 @@ void main() {
     print(sell);
   }
 
+  // **노트 : for-in 문은 자바의 포이치문과 유사하다. 다만 문법을 익혀야 한다.
   print(' ---------- ');
   // TODO: 두 번째 리스트를 for-in 반복문으로 순회하며 각 요소에 10을 더한 값 출력하기
   for (var visiter in monthVisiter) {
