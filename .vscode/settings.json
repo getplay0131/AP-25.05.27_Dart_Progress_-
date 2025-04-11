@@ -8,5 +8,6 @@
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
   "editor.wordBasedSuggestions": "off",
-  "files.autoSave": "afterDelay"
+  "files.autoSave": "afterDelay",
+  "dart.showTodos": false
 }
