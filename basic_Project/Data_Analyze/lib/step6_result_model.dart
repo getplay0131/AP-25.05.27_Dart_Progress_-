@@ -6,6 +6,7 @@
 // AnalysisResult 클래스는 데이터 분석 결과를 저장하고 관리하기 위한 구조를 정의합니다.
 // 이 클래스는 데이터셋 이름, 분석 함수 이름, 결과 값, 분석 시간을 저장합니다.
 
+typedef AnalysisFunction = num Function(List<int>);
 class AnalysisResult {
   // ** 노트 : late키워드로 선언 후 이후 값 초기화가 가능하다.
   // 6-B: 멤버 변수와 생성자 구현하기
@@ -15,7 +16,7 @@ class AnalysisResult {
 
   // TODO: 분석 함수 이름 (String)
   // 어떤 분석 함수가 사용되었는지 저장하는 변수입니다.
-  String functions;
+   final AnalysisFunction function;
 
   // TODO: 분석 결과 값 (num)
   // 분석 결과 값을 저장하는 변수입니다. 숫자 값이므로 num 타입을 사용합니다.
@@ -33,7 +34,7 @@ class AnalysisResult {
   // ** 노트 : 자바에서 할때를 생각해보자, 자바는 IDE 도움으로 자동 생성했지만, 사용할 데이터를 받고, 안에서 전체적으로 초기화 하지만, 다트는 사용할 필드를 필수로 받아서 초기화 해야한다.
   AnalysisResult({
     required this.dataSet,
-    required this.functions,
+    required this.function,
     required this.resultValue,
     required this.times,
   });
@@ -45,7 +46,7 @@ class AnalysisResult {
   @override
   String toString() {
     // TODO: implement toString
-    return "dataset : $dataSet , functions : $functions , resultValue : $resultValue , times : $times ";
+    return "dataset : $dataSet , functions : $function , resultValue : $resultValue , times : $times ";
   }
 
   // @override
@@ -73,15 +74,11 @@ void main() {
   // ** 노트 : 생성한 타입을 담아야하기에 해당 타인으로 변수를 만들어서 값으로 생성자를 이용해서 객체를 만든다.
   // TODO: AnalysisResult 클래스 인스턴스 생성하기
   // AnalysisResult 클래스의 인스턴스를 생성하여 데이터를 저장합니다.
-  // 예: AnalysisResult result = AnalysisResult(
-  //       dataSet: "myData",
-  //       functions: "sum",
-  //       resultValue: 100,
-  //       times: DateTime.now(),
-  //     );
-  AnalysisResult result = AnalysisResult(
+
+  AnalysisResult? result = AnalysisResult(
     dataSet: "data",
-    functions: "functions",
+    // 함수를 받아서 사용하는데, 아래 함수는 임시로 함수를 전달한것이다.
+    function: (List<int> list) => list.reduce((a, b) => a + b), // 임시로 함수 구현하여 저장
     resultValue: 100,
     times: DateTime.now(),
   );
