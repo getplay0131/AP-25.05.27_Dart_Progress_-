@@ -57,6 +57,7 @@ ReminderType test = ReminderType.medication;
 // }
 //
 // TODO: ReminderType에 대한 extension을 만들고, displayName getter를 추가해보세요.
+// **getter는 일반적으로 값을 반환하는 역할만 한다!
 // displayName은 각 알림 유형의 한글 이름을 반환해야 합니다.
 // (예: ReminderType.medication -> '약 복용')
 extension ReminderTypeExtension on ReminderType {
@@ -91,7 +92,9 @@ extension ReminderTypeExtension on ReminderType {
         return " 이 알림은 기타 알림용으로 사용합니다.";
     }
   }
-}
+
+  }
+
 
 // - description: 각 알림 유형에 대한 짧은 설명
 //

@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter Debug",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder}/lib/main.dart", // 앱의 진입점
+      "cwd": "${workspaceFolder}", // 현재 작업 디렉토리
+      "args": ["--no-sound-null-safety"], // 필요에 따라 추가 옵션
+      "console": "integratedTerminal"
+    }
+  ]
+}

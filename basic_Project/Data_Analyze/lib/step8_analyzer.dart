@@ -80,9 +80,14 @@ class Analyzer {
 // typedef를 사용하여 함수 타입에 별칭을 부여할 수 있습니다.
 typedef returnResult = AnalysisResult? Function(List<int> intList);
 
+int testFunction(List<int> intList){
+  return intList.where((n)=> n > 3).length;
+}
+
 AnalysisResult? findOverValue(List<int> intList){
   int count = intList.where((n)=> n > 3).length;
-  return AnalysisResult(dataSet: "over3", function: (list)=>list.where((n)=>n>3).length, resultValue: count, times: DateTime.now());
+  var test = (list)=>list.where((n)=>n>3).length;
+  return AnalysisResult(dataSet: "over3", function: testFunction, resultValue: count, times: DateTime.now());
 }
 // 사용자 정의 함수 저장 Map 선언하기
 // 사용자 정의 분석 함수를 저장할 수 있는 구조를 만듭니다.
@@ -96,7 +101,6 @@ Map<String, returnResult> userCustomFunction = {};
 // 등록된 함수는 이후 분석 실행 메서드에서 호출할 수 있습니다.
 void registFunction(String name, returnResult function) {
   userCustomFunction[name] = function;
-
 }
 
 // 8-C: 분석 결과 저장 구조 만들기
