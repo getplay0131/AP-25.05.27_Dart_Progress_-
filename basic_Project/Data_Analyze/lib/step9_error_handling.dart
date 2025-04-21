@@ -14,62 +14,106 @@ class ErrorHandler {
 
   // 오류 로깅 메서드
   // TODO: 오류 메시지를 로깅하는 메서드 구현
-void getErrorMsg(){
-  print(ERROR_MESSAGE);
-}
+  void getErrorMsg() {
+    print(ERROR_MESSAGE);
+  }
 
+// 9-C: null 안전성 적용하기
+// TODO: nullable 타입을 안전하게 처리하는 메서드 추가
+// 힌트: null 체크, ?? 연산자, ?. 연산자 등을 활용
+  bool checkNullValue(AnalysisResult? result) {
+//   null 체크 진행
+    if (result == null) {
+      print("$result is null!");
+      return false;
+    }
+
+// ?. 연산자는 널이 아닐때 진행한다. 반대로 !.연산자는 널이 아니라고 확신한 데이터이다. 그리고 ?? 연산자는 널이라면 그 우측 값으로 대입된다.
+    if (result.dataSet?.isEmpty ?? false) {
+      print("$result value is error!");
+    }
+
+// 역시 ?. 연산자로 널을 체크하고 널이라면 우측의 문자 값으로 대입된다.
+    print("result.dataSetName : ${result.dataSet?.toString() ?? "Unknown"}");
+    return true;
+  }
+
+
+// 9-D: 다양한 에러 메시지 제공하기
+// TODO: 구체적인 오류 상황별 메시지 정의 및 출력 메서드 구현
+  void checkValue(Object obj) {
+    if (obj is String) {
+      if (obj.isEmpty || obj?.length == 0) {
+        print("$obj is empty or length is 0!");
+      }
+    } else if (obj is Function) {
+      if (obj
+          .toString()
+          .isEmpty || obj
+          .toString()
+          .length == 0) {
+        print("name is not normal");
+      }
+    } else if (obj is int) {
+      if (obj < 0 || obj == 0) {
+        print("value is error!");
+      }
+    } else {
+      print("value is validData!");
+    }
+  }
 }
 
 // 9-A: 사용자 입력 처리하기
 // 향상된 DataManager 클래스
-class ImprovedDataManager {
+  class ImprovedDataManager {
   // 기존 DataManager의 속성과 메서드 가져오기
- DataManager manager = new DataManager();
+  DataManager manager = new DataManager();
 
   // 사용자 입력 검증 메서드 추가
   // TODO: 데이터셋 이름 유효성 검사 메서드 구현
   // 함수 시그니처: bool isValidDatasetName(String name)
   bool isValidDatasetName(String name){
-    if(name.isEmpty) {
-      print("입력값 없음");
-      return false;
-    }
-    return true;
+  if(name.isEmpty) {
+  print("입력값 없음");
+  return false;
+  }
+  return true;
   }
 
   // TODO: 데이터 유효성 검사 메서드 구현
   // 함수 시그니처: bool isValidData(List<num> data)
- //** 노트 : 다트에서는 instanceof가 is로 사용한다.
- bool isValidData(Object obj){
-     if (obj is List) {
-       if (obj.isEmpty) {
-         print("List value is empty! : $obj");
-         return false;
-       } else if (obj is AnalysisFunction) {
-         if (obj.length == 0) {
-           print("AnalysisFunction is empty! : $obj");
-           return false;
-         }
-       }
-       return true;
-     } else {
-       print("유효성 검사 실패");
-       return false;
-     }
+  //** 노트 : 다트에서는 instanceof가 is로 사용한다.
+  bool isValidData(Object obj){
+  if (obj is List) {
+  if (obj.isEmpty) {
+  print("List value is empty! : $obj");
+  return false;
+  } else if (obj is AnalysisFunction) {
+  if (obj.length == 0) {
+  print("AnalysisFunction is empty! : $obj");
+  return false;
+  }
+  }
+  return true;
+  } else {
+  print("유효성 검사 실패");
+  return false;
+  }
   }
 
 
   // 향상된 데이터 추가 메서드
   // TODO: 입력 검증 후 데이터 추가하는 메서드 구현
-bool addData(String name, List<int> datas){
-    if (isValidDatasetName(name) && isValidData(datas)) {
-     manager.addDataset(name, datas);
-     return true;
-    } else {
-      return false;
-    }
-}
-}
+  bool addData(String name, List<int> datas){
+  if (isValidDatasetName(name) && isValidData(datas)) {
+  manager.addDataset(name, datas);
+  return true;
+  } else {
+  return false;
+  }
+  }
+  }
 
 // 9-B: 잘못된 데이터 처리하기
 // 향상된 Analyzer 클래스
@@ -99,18 +143,29 @@ bool isAnalyzePossible(String datasetName, AnalysisFunction function){
 }
 }
 
-// 9-C: null 안전성 적용하기
-// TODO: nullable 타입을 안전하게 처리하는 메서드 추가
-// 힌트: null 체크, ?? 연산자, ?. 연산자 등을 활용
 
-// 9-D: 다양한 에러 메시지 제공하기
-// TODO: 구체적인 오류 상황별 메시지 정의 및 출력 메서드 구현
 
 void main() {
   // TODO: 향상된 DataManager와 Analyzer 인스턴스 생성
   // TODO: 다양한 오류 상황 테스트 (잘못된 데이터셋 이름, 빈 데이터 등)
   // TODO: null 안전성 테스트
   // TODO: 예외 처리 테스트
+  DataManager manager = new DataManager();
+  ErrorHandler errorHandler = new ErrorHandler();
+  Analyzer analyzer = new Analyzer(manager: manager);
+  manager.datasets["first"] = [1,2,3,4,5];
+  // manager.printDataset("sss");
+  try{
+    manager.printDataset("first");
+    analyzer.manager.printDataset("sss");
+    errorHandler.checkNullValue(null);
+    errorHandler.checkValue(0);
+  } catch(e){
+    print("Error : $e");
+  }
+
+
+
 
   // 힌트: try-catch 문법 - try { ... } catch (e) { ... }
   // 힌트: null 체크 - if (variable == null) { ... }

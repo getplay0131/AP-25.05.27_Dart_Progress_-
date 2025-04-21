@@ -2,13 +2,41 @@
 
 // 필요한 클래스 가져오기
 // TODO: (필요한 경우) 이전 단계에서 만든 클래스들을 import 또는 재정의
+import 'step9_error_handling.dart';
+import 'step7_data_manager.dart';
+import 'step8_analyzer.dart';
+import 'step6_result_model.dart';
 
 // 10-A: 데이터 시각화 준비 (나중에 Flutter에서 활용)
 // DataVisualizer 클래스 정의 (Flutter 없이 텍스트 기반 시각화)
 class DataVisualizer {
+  final List<num> results = [1,2,3,4,5];
+  final int bins = 5;
+
   // 히스토그램 생성 메서드
+  // 히스토그램 : 히스토그램은 데이터의 분포를 시각적으로 표현하는 그래프의 일종입니다. 주로 데이터를 여러 구간(빈, bin)으로 나누고, 각 구간에 속하는 데이터의 개수를 막대의 높이로 나타냅니다. 이를 통해 데이터가 특정 구간에 얼마나 집중되어 있는지, 분포가 어떤 형태인지 쉽게 파악할 수 있습니다
+
+  // 이 메서드는 숫자 데이터 리스트를 입력받아, 해당 데이터의 분포를 텍스트 기반으로 히스토그램 형태로 출력합니다.
+  // 예를 들어, 데이터가 [1, 2, 2, 3, 3, 3, 4, 4, 5]라면, 각 숫자가 몇 번 등장했는지 막대 형태로 표현합니다
+
   // TODO: 데이터 분포를 텍스트 기반 히스토그램으로 표현하는 메서드 구현
   // 함수 시그니처: void printHistogram(List<num> data, [int bins = 5])
+  void printHistogram(List<int> data, [int bins = 5]) {
+  // 1. 데이터 유효성 검사
+    // 입력받은 데이터 리스트가 비어 있는지 확인합니다.
+    // 비어 있다면 적절한 메시지를 출력하고 메서드를 종료합니다
+
+    if (data.isEmpty) {
+      print("List is empty!");
+          return;
+    }
+
+  //   2. 최소값과 최대값 계산
+    // 데이터의 최소값과 최대값을 계산합니다.
+    // 이를 통해 구간(bins)을 나누는 기준을 설정합니다.
+    num minValue = data.reduce((a,b)=> a> b ? b : a);
+    num maxValue = data.reduce((a,b)=> a> b ? a : b);
+  }
 
   // 간단한 그래프 출력 메서드
   // TODO: 데이터를 텍스트 기반 그래프로 표현하는 메서드 구현
