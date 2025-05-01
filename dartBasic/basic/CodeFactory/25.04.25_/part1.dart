@@ -6,5 +6,10 @@ main() {
  print(runningMan.toSet());
 
  Map runningManMap = runningMan.asMap();
- print(runningManMap.keys);
+ print(runningManMap.keys.toList());
+ print(runningManMap.values.toList());
+
+ Set runningManSet = Set.from(runningMan);
+ print(runningManSet.toList());
+
 }
