@@ -8,6 +8,7 @@ main() {
 
   print(people);
   final where = people.where((r)=> r["거주지"] == "서울").toList();
+
 print(where);
 
 }
