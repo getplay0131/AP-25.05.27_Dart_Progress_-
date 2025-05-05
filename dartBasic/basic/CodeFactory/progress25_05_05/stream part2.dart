@@ -21,9 +21,9 @@ Stream<int> playAllStream() async*{
 }
 Stream<int> calculate(int num) async*{
   for(int i = 1; i < 6 ; i++){
-    yield i * num;
+    yield i * num * 2;
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
   }
   
 
