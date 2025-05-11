@@ -16,8 +16,6 @@ final result2 = await addNumbersAwait(2, 2);
   print("result:  ${await result}");
   print("result2 : $result2");
 
-
-
 }
 
 void addNumbersFuture (int num1, int num2) {

@@ -27,6 +27,9 @@ print(multiply(1,2));
 print(divide(2,1));
 
 print(performOperation(3, 2, multiply));
+print(performOperation(3, 2, add));
+print(performOperation(3, 2, subtract));
+print(performOperation(3, 2, divide));
 }
 
 int performOperation(int a, int b, MathOperation operation){
