@@ -19,23 +19,26 @@ void sell(int quantity){
 try{
   if (stock < quantity) {
 //   클로드와의 대화에서 예외 관련 지식 주석으로 정리하고 진행하기
+//   예외 발생시키기
     throw (InsufficientStockException(currentStock: stock, quantityCount:
     quantity));
   }
   stock -= quantity;
-
+//   해당 에러만 처리한다.
 } on InsufficientStockException catch(e){
   print("에러 발생 : ${e.message}");
+//   on으로 잡는 에러 제외 모든 에러를 잡는다.
 } catch(e){
   print("미확인 예외 발생! $e");
 }
 }
+
 void restock(int quantity){
   stock += quantity;
 }
 
-void getInfo(){
-  print("상품 이름 : $name , 가격 : $price , 수량 : $stock");
+String getInfo(){
+  return "상품 이름 : $name , 가격 : $price , 수량 : $stock";
 }
 
 }
@@ -58,21 +61,89 @@ class ShoppingCart{
     items = {};
   }
 
-  void addItem(Product product, int quqntity){
-
+  void addItem(Product product, int quantity){
+  if (checkValue(product) && checkValue(quantity)) {
+    items[product] = quantity;
+  }
   }
 
-  void checkValue(Object object){
-    if (dynamic.is) {
-
+  void removeItem(Product product){
+    if(checkValue(product) && items.containsKey(product)){
+      items.remove(product);
+    } else {
+      print("물픔 삭제가 실패하였습니다");
     }
+  }
+
+  double getTotalPrice(){
+    double total = 0;
+    for (var item in items.keys) {
+      total += item.price;
+    }
+    print("총 금액 : $total 원");
+    return total;
+  }
+
+  void checkout(){
+    for (var o in items.keys) {
+      o.sell(items[o]!);
+    }
+  }
+  
+  bool checkValue(Object object){
+    if (object ==  null) {
+    return false;
+    } else if(object is int){
+      if (object <= 0) {
+        return false;
+      }
+    }
+    return true;
   }
 
 
 }
 // 3. 여러 상품을 생성하고, 장바구니에 추가/제거한 후, 결제 과정을 시뮬레이션하세요
+main() {
+  final productIsMilk = new Product(name: "우유", price: 1500, stock: 5);
+  final productIsRice = new Product(name: "즉석밥", price: 2500, stock: 3);
+  final productIsSnack = new Product(name: "과자", price: 1500, stock: 10);
+  final productIsDrink = new Product(name: "음료", price: 2000, stock: 7);
+  var shoppingCart = new ShoppingCart();
 
+  shoppingCart.addItem(productIsMilk, 2);
+  shoppingCart.addItem(productIsRice, 1);
+  shoppingCart.addItem(productIsDrink, 3);
+  shoppingCart.addItem(productIsSnack, 4);
 
+  for (var cart in shoppingCart.items.keys) {
+    print(cart.name);
+    print(cart.stock);
+  }
+
+  print("----------------");
+
+  shoppingCart.removeItem(productIsMilk);
+
+  for (var cart in shoppingCart.items.keys) {
+    print(cart.name);
+    print(cart.stock);
+  }
+
+  print("----------------");
+
+  shoppingCart.checkout();
+
+  for (var cart in shoppingCart.items.keys) {
+    print(cart.name);
+    print(cart.stock);
+  }
+
+  for (var cart in shoppingCart.items.keys) {
+    print(cart.getInfo());
+
+  }
+}
 class InsufficientStockException implements Exception{
   // 다트의 예외는 실제 메서드나 필드가 없다.
   // 이 키워드를 예외 클래스임을 표시하는 마커 인터페이스 이다.

@@ -6,7 +6,10 @@ List<String> fruits = ["사과","바나나","딸기","포도","사과"];
 Set<String> uniqueFruits = fruits.toSet();
 // - fruitPrices: 과일 가격 정보를 담은 맵 (사과: 2000, 바나나: 3000, 딸기: 4500, 포도: 5000)
 List<int> fruitsPriceList = [2000,3000,4500,5000];
-uniqueFruits.toList().asMap();
+var asMapFruits = uniqueFruits.toList().asMap(); // 이코드는 내 의도와 달리 값으로 들어가기에 
+// 아래 코드가 적합하다
+print(asMapFruits);
+print("---------------");
 // 타입 추론 오류 발생
 Map<String,int> fruitPrices = Map.fromIterables(uniqueFruits.toList(),
     fruitsPriceList);

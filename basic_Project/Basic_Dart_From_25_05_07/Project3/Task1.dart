@@ -27,17 +27,18 @@
 // - 메서드:
 //   * getInfo() 오버라이드: 기존 정보에 "학교: [schoolName], [grade]학년" 추가
 class Student extends Person{
-  final String name;
-
-  final int age;
-
-  final String? address;
+  // final String name;
+  //
+  // final int age;
+  //
+  // final String? address;
 
   final String schoolName;
 
   final int grade;
 
-  Student(this.name, this.age, this.address, this.schoolName, this.grade) :
+  Student(final String name,final int age, final String? address, this
+      .schoolName, this.grade) :
   super(name: name, age: age, address: address);
 
   @override
