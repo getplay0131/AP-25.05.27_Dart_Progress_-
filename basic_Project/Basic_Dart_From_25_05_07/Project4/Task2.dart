@@ -29,18 +29,49 @@ print(list2);
 // 3. 함수형 메서드를 사용하여 다음을 계산하세요:
 // - 사용자들의 평균 나이
 var averageAge = users.map((n)=>n["age"] as int ).reduce((n,m)=>n+m)/users.length;
-var list3 = averageAge;
-print(list3);
+print("사용자들의 평균 나이 : $averageAge");
 
 // - 가장 나이가 많은 사용자의 이름
-users.
+// var reduce = users.map((n)=>n["age"] as int).reduce((a,b)=>a > b ? a : b);
+// var maxUsersName = users.firstWhere((a)=>(a["age"] as int) == reduce)["name"] as String;
+// print(maxUsersName);
+
+var findMaxAgeUser = users.reduce((a,b)=>(a["age"] as int) > (b["age"] as int) ? a : b);
+var maxAgeUser = findMaxAgeUser["name"] as String;
+print("가장 나이가 많은 사용자 :   $maxAgeUser");
+
 // - 가장 나이가 적은 active 사용자의 이름
+  var activeTrueUsers = users.where((n)=>n["active"]==true).toList();
+  var findActiveTrueAndMinAge = activeTrueUsers.reduce((a,b)=>(a["age"] as
+  int) >
+      (b["age"] as int)
+      ? b : a);
+var findActiveTrueAndMinAgeUserName = findActiveTrueAndMinAge["name"] as String;
+print(findActiveTrueAndMinAgeUserName);
+
 
 
 // 4. 사용자 데이터를 다음과 같이 변환하세요:
 // - 이름을 키로, 나이를 값으로 하는 Map<String, int> 생성
 // (힌트: fold 또는 reduce 활용)
 
+var nameAndAgesMap1 = users.fold(<String,int> {},(Map<String,int>names,ages){
+  names[ages["name"] as String] = ages["age"] as int;
+  return names;
+  });
+
+Map<String,int> nameAndAgesMap2 = {};
+  for (var user in users) {
+    nameAndAgesMap2[user["name"] as String] = user["age"] as int;
+  }
+  print(nameAndAgesMap2);
+
 // 5. 캐스케이딩 연산자(.../cascade operator)를 사용하여
 // 리스트에 여러 작업을 연속적으로 수행하는 예제를 작성하세요
+  List<int> Intlist1 = [1,2,3,4,5];
+  List<int> Intlist2 = [6,7,8,9,10];
+  List<int> result = [...Intlist1,...Intlist2];
+  print(result);
+
+
 }
