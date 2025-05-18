@@ -24,13 +24,31 @@ print("사용자 게시글 : $userPosts");
 
 print("사용자 데이터 수신 완료");
 }
-getUserInfo();
+// getUserInfo();
 // 3. 위 두 함수를 병렬로 호출하고 모든 결과가 준비되면 출력하는 async 함수 getUserInfoParallel()을 작성하세요
 // (힌트: Future.wait 활용)
 Future<void> getUserInfoParallel() async{
-  //
-  await Future.wait([fetchUserData(),fetchUserPosts()],)
+  //Future.wait는 여러개의 비동기를 동시에 병렬로 실행하고, 모든 비동기가 완료될대까지 대기 후 결과를 리스트로 반환한다.
+  var results = await Future.wait([fetchUserData(),fetchUserPosts()]);
+
+  var userData = results[0] as Map<String, int>;
+  var userPost = results[1] as List<String>;
+
+  print("사용자 정보 : $userData");
+  print("사용자 게시물 : $userPost");
+
 }
+
+Future<(Map<String,int>,List<String>)> getUserInfoParallelUseRecords() async{
+  final userDatas = await fetchUserData();
+  final userPosts = await fetchUserPosts();
+  print("사용자 데이터 : $userDatas");
+  print("사용자 게시물 : $userPosts");
+  return (await userDatas, await userPosts);
+}
+// getUserInfoParallel();
+final(userData as Map<String,int>, userPost as List<String>) = await
+getUserInfoParallelUseRecords();
 // 4. try-catch를 사용하여 비동기 함수의 예외를 처리하는 예제를 작성하세요
 // (힌트: 일부러 예외를 발생시키는 함수를 만들고 호출)
 }
