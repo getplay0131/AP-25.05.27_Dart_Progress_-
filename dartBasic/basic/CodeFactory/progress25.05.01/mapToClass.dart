@@ -19,7 +19,7 @@ for(Person persons in parsedPeople){
 }
 final seoul = parsedPeople.where((r) => r.address == "서울").toList();
 print(seoul);
-final result = people.map((x)=> Person(name: x["name"]!, address: x["거주지"]!),).where((x)=> x.address == "서울").fold<int>(0,(prev,next) =>  prev + next.address.length);
+final result = people.map((x)=> Person(name: x["name"]!, address: x["거주지"]!)).where((x)=> x.address == "서울").fold<int>(0,(prev,next) =>  prev + next.address.length);
 
 print(result);
 }
