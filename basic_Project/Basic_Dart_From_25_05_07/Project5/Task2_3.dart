@@ -15,9 +15,35 @@ final stream = countStream(10);
 
 // 방법 1: await for 사용
 // 여기에 코드를 작성하세요
+// await for (final target in stream) {
+//   //
+//   if (target % 2 == 0) {
+//     print(target);
+//   }
+//   }
 
-// 또는
+  // 또는
 
 // 방법 2: where 메서드 사용
 // 여기에 코드를 작성하세요
+// var list = await stream.where((r)=>r%2==0).toList();
+// print(await list);
+
+// * where + for-each
+// var list = await stream.where((r)=>r%2==0).toList();
+//   for (var o in list) {
+//     print(o);
+//   }
+
+  // *await for + where
+  // await for (var o in stream.where((r)=>r%2==0)) {
+  //   print("짝수 : $o");
+  // }
+
+  // *listen 활용
+  stream.where((r)=>r%2==0).listen((num)=>print("짝수 : $num"));
+}
+
+main() {
+  filterEvenNumbers();
 }
