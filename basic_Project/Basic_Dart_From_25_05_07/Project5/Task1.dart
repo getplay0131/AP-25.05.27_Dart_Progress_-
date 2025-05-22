@@ -122,8 +122,8 @@ Future<(Map<String,int>,List<String>)> getUserInfoParallelUseRecords() async{
 //   print("예외! : $e");
 // }
   print("예외 처리 시작!");
- // await handleException();
-  handleExceptionWithThen();
+ await handleException();
+ //  handleExceptionWithThen();
   print("예외 처리 완료!");
 
 }
