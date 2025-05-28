@@ -17,7 +17,7 @@ String whoIsHe(Person person)=>switch(person){
   Idol i => "아이돌!",
   Engineer e => "엔지니어!",
 // _ => "기타!"
-}
+};
 
 //mixin
 mixin class AnimalMixIn{
